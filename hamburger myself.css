@@ -1,0 +1,69 @@
+html, body {
+    height: 100%;
+}
+:root {
+    --body-color: red;
+    --hamburger-color: white;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--body-color);
+}
+
+h1 {
+    color: var(--hamburger-color);
+}
+
+.hamburger-container {
+    width: 200px;
+    height: 200px;
+    background-color: var(--body-color);
+    position: relative;
+}
+input {
+    opacity: 0;
+}
+
+.box {
+    width: 100%;
+    height: 20px;
+    background-color: var(--hamburger-color);
+    position: absolute;
+    top: 50%;
+}
+.box::before {
+    content: "";
+    width: 100%;
+    height: 20px;
+    background-color: var(--hamburger-color);
+    position: absolute;
+    top: -40px;
+    transform: rotate(0deg);
+}
+.box::after {
+    content: "";
+    width: 100%;
+    height: 20px;
+    background-color: var(--hamburger-color);
+    position: absolute;
+    top: 40px;
+    transform: rotate(0deg);
+}
+
+input:checked ~.box {
+    background-color: var(--body-color);
+}
+input:checked ~.box::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+input:checked ~.box::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+.box, .box::before, .box::after {
+    transition: transform 1s ease-in-out, top 1s ease-in-out;
+}
